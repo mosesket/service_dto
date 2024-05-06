@@ -35,6 +35,8 @@ class StaffController extends Controller
 
     public function create(CreateStaffRequest $request)
     {
+        dd($request);
+
         $name = 'name';
         $email = 'email2';
         $department = 'department';
