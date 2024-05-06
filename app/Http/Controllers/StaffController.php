@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateStaffRequest;
+use App\Http\Requests\UpdateStaffRequest;
+use App\Http\Resources\StaffResponse;
 use App\Models\Staff;
 use App\Services\StaffService;
 use Illuminate\Http\Request;
@@ -25,10 +28,12 @@ class StaffController extends Controller
 
         $staffs = $staffService->getStaffs();
 
-        dd($staffs);
+        return new StaffResponse($staffs);
+
+        // return $staffs;
     }
 
-    public function create(Request $request)
+    public function create(CreateStaffRequest $request)
     {
         $name = 'name';
         $email = 'email2';
@@ -45,7 +50,7 @@ class StaffController extends Controller
         dd($staff);
     }
 
-    public function store($id, Request $request)
+    public function store($id, UpdateStaffRequest $request)
     {
 
         // $department = $request->department;
