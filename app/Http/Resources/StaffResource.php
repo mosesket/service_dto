@@ -14,14 +14,16 @@ class StaffResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // return parent::toArray($request);
+
         return [
             'name' => $this->name,
             'email' => $this->email,
-            'new__course' => $this->department,
+            'department' => $this->department,
 
-            'payrolls' => PayrollResource::collection(
-                $this->whenLoaded('payrolls')
-            ),
+            // 'payrolls' => PayrollResource::collection(
+            //     $this->whenLoaded('payrolls')
+            // ),
         ];
     }
 }

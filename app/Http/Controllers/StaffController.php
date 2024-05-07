@@ -28,6 +28,8 @@ class StaffController extends Controller
 
         $staffs = StaffResource::collection($staffs);
 
+        //   StaffResource::collection(staff)
+
         return response()->json([
             'message' => 'All staffs retrieved successfully.',
             'status' => 200,
@@ -78,7 +80,7 @@ class StaffController extends Controller
         ]);
     }
 
-    public function show(Staff $staff): JsonResponse
+    public function show(): JsonResponse
     {
         $staff = Staff::find(1);
 

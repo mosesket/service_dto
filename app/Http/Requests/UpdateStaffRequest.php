@@ -23,7 +23,9 @@ class UpdateStaffRequest extends FormRequest
     {
         return [
             'id' => 'required',
-            'department' => 'required',
+            'name' => 'nullabe',
+            'email' => 'nullabe|email',
+            'department' => '',
         ];
     }
 }

@@ -13,7 +13,7 @@ Route::get('/user', function (Request $request) {
         Route::get('/', [StaffController::class, 'index']);
         Route::post('create', [StaffController::class, 'create']);
         Route::put('update', [StaffController::class, 'update']);
-        Route::post('staff', [StaffController::class, 'update']);
+        Route::post('staff', [StaffController::class, 'show']);
         Route::delete('remove', [StaffController::class, 'destroy']);
     });
 // });

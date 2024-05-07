@@ -11,6 +11,7 @@ class StaffService
 {
     public static function getStaffs(): Collection
     {
+        // $staffs = Staff::all();
         $staffs = Staff::with('payrolls')->get();
 
         return $staffs;
@@ -24,13 +25,13 @@ class StaffService
             'department' => $staffDto->department,
         ]);
 
-        // Create a payroll for the new staff member
-        $payroll = new Payroll([
-            'period' => 'monthly',
-            'amount' => 2000.00,
-        ]);
+        // // Create a payroll for the new staff member
+        // $payroll = new Payroll([
+        //     'period' => 'monthly',
+        //     'amount' => 2000.00,
+        // ]);
 
-        $staff->payrolls()->save($payroll);
+        // $staff->payrolls()->save($payroll);
 
         return $staff;
     }
