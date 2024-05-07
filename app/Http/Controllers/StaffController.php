@@ -4,23 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
-use App\Http\Resources\StaffResponse;
+use App\Http\Resources\StaffResource;
 use App\Models\Staff;
 use App\Services\StaffService;
-use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
-    // protected $staffService;
+    protected $staffService;
 
-    // public function __construct(StaffService $staffService)
-    // {
-    //     $this->staffService = $staffService;
-    // }
-
-    public function __construct(
-        protected StaffService $staffService,
-    ) {}
+    public function __construct(StaffService $staffService)
+    {
+        $this->staffService = $staffService;
+    }
 
     public function index()
     {
@@ -28,68 +23,57 @@ class StaffController extends Controller
 
         $staffs = $staffService->getStaffs();
 
-        return new StaffResponse($staffs);
+        $staffs = StaffResource::collection($staffs);
 
-        // return $staffs;
+        return $staffs;
+
+        // return response()->json([
+        //     'message' => 'Settings retrieved successfully.',
+        //     'status' => 200,
+        //     'data' => $staffs,
+        // ]);
     }
 
     public function create(CreateStaffRequest $request)
     {
-        dd($request);
-
-        $name = 'name';
-        $email = 'email2';
-        $department = 'department';
-
-        // $staffService = new StaffService;
-
         $staff = $this->staffService->createMethod(
-            $name,
-            $email,
-            $department,
+            $request->validated('name'),
+            $request->validated('email'),
+            $request->validated('department'),
         );
 
-        dd($staff);
+        $staff = new StaffResource(
+            $staff
+        );
+
+        return $staff;
     }
 
-    public function store($id, UpdateStaffRequest $request)
+    public function update($id, UpdateStaffRequest $request)
     {
+        $staff = $this->staffService->updateDepartment(
+            $id,
+            $request->validated('department')
+        );
 
-        // $department = $request->department;
-        $department = 'new-----department';
+        $staff = new StaffResource(
+            $staff
+        );
 
-        $staff = $this->staffService->updateDepartment($id, $department);
-
-        dd($staff);
+        return $staff;
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Staff $staff)
     {
-        //
+        $staff = Staff::find(1);
+
+        $staff = new StaffResource(
+            $staff
+        );
+
+        return $staff;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Staff $staff)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Staff $staff)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Staff $staff)
     {
         //

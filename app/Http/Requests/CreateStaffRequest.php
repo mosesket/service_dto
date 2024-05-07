@@ -11,7 +11,8 @@ class CreateStaffRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        // one advantage of FormRequest is that only authorised users can use it... to return true
+        return false;
     }
 
     /**
@@ -22,7 +23,7 @@ class CreateStaffRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'private_key' => 'required',
         ];
     }
 }

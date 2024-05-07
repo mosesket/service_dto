@@ -15,24 +15,19 @@ class StaffService
 
     public function createMethod(string $name, string $email, string $department)
     {
-        $staff = Staff::create([
+        return Staff::create([
             'name' => $name,
             'email' => $email,
             'department' => $department,
         ]);
-
-        return $staff;
     }
 
     public function updateDepartment(int $id, string $department )
     {
         $staff = Staff::find($id);
 
-        $staff->update([
+        return tap($staff)->update([
             'department' => $department,
         ]);
-
-        return $staff;
     }
-
 }

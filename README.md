@@ -1,9 +1,9 @@
 
 ```
-php artisan make:request UpdateStaffRequest
+php artisan make:request UpdateStafRequest
 ```
 
 ```
-php artisan make:resource StaffResponse 
+php artisan make:resource StafResource 
 ```
 
