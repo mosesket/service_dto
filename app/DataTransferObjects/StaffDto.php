@@ -24,6 +24,7 @@ readonly class StaffDto
             $request->validated('department'),
         );
     }
+
     public static function fromUpdateStaffRequest(UpdateStaffRequest $request): StaffDto
     {
         return new self(

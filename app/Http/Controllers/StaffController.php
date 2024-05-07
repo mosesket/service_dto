@@ -10,7 +10,6 @@ use App\Models\Staff;
 use App\Services\StaffService;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class StaffController extends Controller
@@ -28,8 +27,6 @@ class StaffController extends Controller
 
         $staffs = StaffResource::collection($staffs);
 
-        //   StaffResource::collection(staff)
-
         return response()->json([
             'message' => 'All staffs retrieved successfully.',
             'status' => 200,
@@ -37,16 +34,13 @@ class StaffController extends Controller
         ]);
     }
 
-    public function create(CreateStaffRequest $request): JsonResponse
+    public function create(CreateStaffRequest $request)
     {
         try {
-            $staff = $this->staffService->createMethod(
-                StaffDto::fromCreateStaffRequest($request)
-            );
+            $staffDto = StaffDto::fromCreateStaffRequest($request);
+            $staff = $this->staffService->createMethod($staffDto);
 
-            $staff = new StaffResource(
-                $staff
-            );
+            $staff = new StaffResource($staff);
 
             return response()->json([
                 'message' => 'Staff created successfully.',
@@ -65,13 +59,10 @@ class StaffController extends Controller
 
     public function update(UpdateStaffRequest $request): JsonResponse
     {
-        $staff = $this->staffService->updateDepartment(
-            StaffDto::fromUpdateStaffRequest($request)
-        );
+        $staffDto = StaffDto::fromUpdateStaffRequest($request);
+        $staff = $this->staffService->createMethod($staffDto);
 
-        $staff = new StaffResource(
-            $staff
-        );
+        $staff = new StaffResource($staff);
 
         return response()->json([
             'message' => 'Staff updated successfully.',
@@ -84,9 +75,7 @@ class StaffController extends Controller
     {
         $staff = Staff::find(1);
 
-        $staff = new StaffResource(
-            $staff
-        );
+        $staff = new StaffResource($staff);
 
         return response()->json([
             'message' => 'Staff retrieved successfully.',

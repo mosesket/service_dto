@@ -17,6 +17,7 @@ class CreateStaffRequest extends FormRequest
         // one advantage of FormRequest is that only authorised users can use it... to return true
         // return false;
         // return Auth::check();
+        // user->web, Gate::user('can->create');
         return true;
     }
 

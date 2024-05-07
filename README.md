@@ -1,3 +1,7 @@
+go to the folder you want to use it, and run this commands
+```
+git clone git@github.com:mosesket/service_dto.git
+```
 
 ```
 php artisan make:model Staff -mrc 

@@ -20,10 +20,12 @@ class StaffResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'department' => $this->department,
+            // 'fullname' => $this->firstname . ' ' . $this->lastname,
+            'fullname' => $this->name . $this->middlename . ' ' . 'surname',
 
-            // 'payrolls' => PayrollResource::collection(
-            //     $this->whenLoaded('payrolls')
-            // ),
+            'payrolls' => PayrollResource::collection(
+                $this->whenLoaded('payrolls')
+            ),
         ];
     }
 }
