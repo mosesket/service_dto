@@ -22,7 +22,8 @@ class UpdateStaffRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required',
+            'department' => 'required',
         ];
     }
 }

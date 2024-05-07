@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateStaffRequest extends FormRequest
 {
@@ -12,7 +13,9 @@ class CreateStaffRequest extends FormRequest
     public function authorize(): bool
     {
         // one advantage of FormRequest is that only authorised users can use it... to return true
-        return false;
+        // return false;
+        return Auth::check();
+        // return true;
     }
 
     /**
@@ -23,7 +26,10 @@ class CreateStaffRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'private_key' => 'required',
+            'id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'department' => 'required',
         ];
     }
 }

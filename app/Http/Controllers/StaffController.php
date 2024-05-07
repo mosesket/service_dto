@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTransferObjects\StaffDto;
 use App\Http\Requests\CreateStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
 use App\Http\Resources\StaffResource;
 use App\Models\Staff;
 use App\Services\StaffService;
+use Illuminate\Http\JsonResponse;
 
 class StaffController extends Controller
 {
@@ -17,7 +19,7 @@ class StaffController extends Controller
         $this->staffService = $staffService;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         $staffService = new StaffService;
 
@@ -25,21 +27,19 @@ class StaffController extends Controller
 
         $staffs = StaffResource::collection($staffs);
 
-        return $staffs;
+        // return $staffs;
 
-        // return response()->json([
-        //     'message' => 'Settings retrieved successfully.',
-        //     'status' => 200,
-        //     'data' => $staffs,
-        // ]);
+        return response()->json([
+            'message' => 'Settings retrieved successfully.',
+            'status' => 200,
+            'data' => $staffs,
+        ]);
     }
 
     public function create(CreateStaffRequest $request)
     {
         $staff = $this->staffService->createMethod(
-            $request->validated('name'),
-            $request->validated('email'),
-            $request->validated('department'),
+            StaffDto::fromCreateStaffRequest($request)
         );
 
         $staff = new StaffResource(
@@ -53,7 +53,7 @@ class StaffController extends Controller
     {
         $staff = $this->staffService->updateDepartment(
             $id,
-            $request->validated('department')
+            StaffDto::fromUpdateStaffRequest($request)
         );
 
         $staff = new StaffResource(
