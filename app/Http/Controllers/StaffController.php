@@ -10,6 +10,8 @@ use App\Models\Staff;
 use App\Services\StaffService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class StaffController extends Controller
 {
@@ -22,9 +24,7 @@ class StaffController extends Controller
 
     public function index(): JsonResponse
     {
-        $staffService = new StaffService;
-
-        $staffs = $staffService->getStaffs();
+        $staffs = $this->staffService->getStaffs();
 
         $staffs = StaffResource::collection($staffs);
 
@@ -52,10 +52,11 @@ class StaffController extends Controller
                 'data' => $staff,
             ], 201);
         } catch (Exception $e) {
+            Log::channel('custom')->error('Failed to create customer: ' . $e->getMessage());
+
             return response()->json([
                 'status' => 500,
                 'message' => "An error occured. Please try again later",
-                'error' => 'Error: ' . $e->getMessage()
             ]);
         }
     }

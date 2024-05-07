@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Staff extends Model
+class Payroll extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    // Define the relationship with Payroll
-    public function payrolls()
+    // Define the relationship with Staff
+    public function staff()
     {
-        return $this->hasMany(Payroll::class);
+        return $this->belongsTo(Staff::class);
     }
 }

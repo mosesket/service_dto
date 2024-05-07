@@ -19,7 +19,7 @@ class StaffResource extends JsonResource
             'email' => $this->email,
             'new__course' => $this->department,
 
-            'payrolls' => StaffResource::collection(
+            'payrolls' => PayrollResource::collection(
                 $this->whenLoaded('payrolls')
             ),
         ];
