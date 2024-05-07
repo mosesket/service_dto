@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateStaffRequest;
 use App\Http\Resources\StaffResource;
 use App\Models\Staff;
 use App\Services\StaffService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 
 class StaffController extends Controller
@@ -36,24 +37,27 @@ class StaffController extends Controller
 
     public function create(CreateStaffRequest $request): JsonResponse
     {
-        return response()->json([
-            'message' => 'Staff created successfully.',
-            'status' => 200,
-        ], 201);
+        try {
+            $staff = $this->staffService->createMethod(
+                StaffDto::fromCreateStaffRequest($request)
+            );
 
-        // $staff = $this->staffService->createMethod(
-        //     StaffDto::fromCreateStaffRequest($request)
-        // );
+            $staff = new StaffResource(
+                $staff
+            );
 
-        // $staff = new StaffResource(
-        //     $staff
-        // );
-
-        // return response()->json([
-        //     'message' => 'Staff created successfully.',
-        //     'status' => 200,
-        //     'data' => $staff,
-        // ], 201);
+            return response()->json([
+                'message' => 'Staff created successfully.',
+                'status' => 200,
+                'data' => $staff,
+            ], 201);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 500,
+                'message' => "An error occured. Please try again later",
+                'error' => 'Error: ' . $e->getMessage()
+            ]);
+        }
     }
 
     public function update(UpdateStaffRequest $request): JsonResponse
@@ -70,7 +74,7 @@ class StaffController extends Controller
             'message' => 'Staff updated successfully.',
             'status' => 200,
             'data' => $staff,
-        ], 201);
+        ]);
     }
 
     public function show(Staff $staff): JsonResponse
