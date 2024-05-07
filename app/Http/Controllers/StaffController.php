@@ -27,32 +27,38 @@ class StaffController extends Controller
 
         $staffs = StaffResource::collection($staffs);
 
-        // return $staffs;
-
         return response()->json([
-            'message' => 'Settings retrieved successfully.',
+            'message' => 'All staffs retrieved successfully.',
             'status' => 200,
             'data' => $staffs,
         ]);
     }
 
-    public function create(CreateStaffRequest $request)
+    public function create(CreateStaffRequest $request): JsonResponse
     {
-        $staff = $this->staffService->createMethod(
-            StaffDto::fromCreateStaffRequest($request)
-        );
+        return response()->json([
+            'message' => 'Staff created successfully.',
+            'status' => 200,
+        ], 201);
 
-        $staff = new StaffResource(
-            $staff
-        );
+        // $staff = $this->staffService->createMethod(
+        //     StaffDto::fromCreateStaffRequest($request)
+        // );
 
-        return $staff;
+        // $staff = new StaffResource(
+        //     $staff
+        // );
+
+        // return response()->json([
+        //     'message' => 'Staff created successfully.',
+        //     'status' => 200,
+        //     'data' => $staff,
+        // ], 201);
     }
 
-    public function update($id, UpdateStaffRequest $request)
+    public function update(UpdateStaffRequest $request): JsonResponse
     {
         $staff = $this->staffService->updateDepartment(
-            $id,
             StaffDto::fromUpdateStaffRequest($request)
         );
 
@@ -60,10 +66,14 @@ class StaffController extends Controller
             $staff
         );
 
-        return $staff;
+        return response()->json([
+            'message' => 'Staff updated successfully.',
+            'status' => 200,
+            'data' => $staff,
+        ], 201);
     }
 
-    public function show(Staff $staff)
+    public function show(Staff $staff): JsonResponse
     {
         $staff = Staff::find(1);
 
@@ -71,7 +81,11 @@ class StaffController extends Controller
             $staff
         );
 
-        return $staff;
+        return response()->json([
+            'message' => 'Staff retrieved successfully.',
+            'status' => 200,
+            'data' => $staff,
+        ]);
     }
 
     public function destroy(Staff $staff)

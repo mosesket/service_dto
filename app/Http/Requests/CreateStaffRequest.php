@@ -14,8 +14,8 @@ class CreateStaffRequest extends FormRequest
     {
         // one advantage of FormRequest is that only authorised users can use it... to return true
         // return false;
-        return Auth::check();
-        // return true;
+        // return Auth::check();
+        return true;
     }
 
     /**
@@ -26,7 +26,6 @@ class CreateStaffRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required',
             'name' => 'required',
             'email' => 'required',
             'department' => 'required',

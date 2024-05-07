@@ -25,9 +25,9 @@ class StaffService
 
     }
 
-    public function updateDepartment(int $id, StaffDto $staffDto): Staff
+    public function updateDepartment(StaffDto $staffDto): Staff
     {
-        $staff = Staff::find($id);
+        $staff = Staff::find($staffDto->id);
 
         return tap($staff)->update([
             'department' => $staffDto->department,

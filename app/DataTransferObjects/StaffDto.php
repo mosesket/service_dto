@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateStaffRequest;
 readonly class StaffDto
 {
     public function __construct(
-        public string $id,
+        public ?string $id = null,
         public ?string $name = null,
         public ?string $email = null,
         public ?string $department = null,
@@ -18,7 +18,7 @@ readonly class StaffDto
     public static function fromCreateStaffRequest(CreateStaffRequest $request): StaffDto
     {
         return new self(
-            $request->validated('id'),
+            null,
             $request->validated('name'),
             $request->validated('email'),
             $request->validated('department'),
