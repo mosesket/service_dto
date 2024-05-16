@@ -8,10 +8,16 @@ use App\Http\Requests\UpdateStaffRequest;
 readonly class StaffDto
 {
     public function __construct(
+        // public string $name,
+        // public string $email,
+        // public string $department,
+        // public int $public2k,
+
         public ?string $id = null,
         public ?string $name = null,
         public ?string $email = null,
         public ?string $department = null,
+        public ?string $public2k = null,
     ) {
     }
 
@@ -22,6 +28,7 @@ readonly class StaffDto
             $request->validated('name'),
             $request->validated('email'),
             $request->validated('department'),
+            $request->validated('public_2k'),
         );
     }
 
@@ -32,6 +39,7 @@ readonly class StaffDto
             null,
             null,
             $request->validated('department'),
+            null,
         );
     }
 }

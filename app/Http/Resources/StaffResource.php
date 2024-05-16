@@ -20,6 +20,12 @@ class StaffResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'department' => $this->department,
+
+            // including in DTO
+            'public_2k' => $this->department,
+            // not including in DTO
+            'private_2billion' => $this->department,
+
             // 'fullname' => $this->firstname . ' ' . $this->lastname,
             'fullname' => $this->name . $this->middlename . ' ' . 'surname',
 

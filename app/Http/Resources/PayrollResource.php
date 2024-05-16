@@ -16,7 +16,7 @@ class PayrollResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            'id' => $this->id,
+            // 'id' => $this->id,
             'staff_id' => $this->staff_id,
             'amount' => $this->amount,
             'payroll_code' => 'OATEK-ID-319'. $this->id,

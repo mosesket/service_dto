@@ -16,9 +16,9 @@ class StaffController extends Controller
 {
     protected $staffService;
 
-    public function __construct(StaffService $staffService)
+    public function __construct(StaffService $staff_service)
     {
-        $this->staffService = $staffService;
+        $this->staffService = $staff_service;
     }
 
     public function index(): JsonResponse
@@ -34,9 +34,18 @@ class StaffController extends Controller
         ]);
     }
 
-    public function create(CreateStaffRequest $request)
+    public function create(CreateStaffRequest $request) : JsonResponse
     {
         try {
+            // $staffDto = new StaffDto(
+            //     $request->name,
+            //     $request->email,
+            //     $request->department,
+            //     $request->public_2k,
+            // );
+
+            // $request->private_2billion was not used in the dto and may be used in other methods,
+
             $staffDto = StaffDto::fromCreateStaffRequest($request);
             $staff = $this->staffService->createMethod($staffDto);
 
@@ -60,7 +69,7 @@ class StaffController extends Controller
     public function update(UpdateStaffRequest $request): JsonResponse
     {
         $staffDto = StaffDto::fromUpdateStaffRequest($request);
-        $staff = $this->staffService->createMethod($staffDto);
+        $staff = $this->staffService->updateDepartment($staffDto);
 
         $staff = new StaffResource($staff);
 

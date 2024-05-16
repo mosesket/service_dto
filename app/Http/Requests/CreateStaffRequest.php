@@ -17,7 +17,7 @@ class CreateStaffRequest extends FormRequest
         // one advantage of FormRequest is that only authorised users can use it... to return true
         // return false;
         // return Auth::check();
-        // user->web, Gate::user('can->create');
+        // User::Auth('admin')// Gate::user('can_create');
         return true;
     }
 
@@ -45,6 +45,8 @@ class CreateStaffRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'department' => 'required',
+            'public_2k' => 'integer|required',
+            'private_2billion' => 'integer|required',
         ];
     }
 
@@ -71,6 +73,8 @@ class CreateStaffRequest extends FormRequest
         return [
             'name' => 'full name',
             'email' => 'email address',
+            'public_2k' => 'shared public_2k in Dto',
+            'private_2billion' => 'hidden private_2billion in Dto',
         ];
     }
 
@@ -85,8 +89,8 @@ class CreateStaffRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'status' => 422,
             'message' => 'Validation failed.',
-            'error' => $validator->errors()->first(),
-            // 'errors' => $validator->errors(),
+            // 'error' => $validator->errors()->first(),
+            'errors' => $validator->errors(),
         ]));
     }
 }

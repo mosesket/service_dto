@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('department');
+            $table->string('private_2billion');
+            $table->string('public_2k');
             $table->timestamps();
         });
     }
