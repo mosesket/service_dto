@@ -18,7 +18,7 @@ php artisan install:api
 
 create service commands
 ```
-php artisan  make:class Service/StaffService
+php artisan  make:class Services/StaffService
 ```
 
 create request commands
