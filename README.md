@@ -3,6 +3,13 @@ go to the folder you want to use it, and run this commands
 git clone git@github.com:mosesket/service_dto.git
 ```
 
+one-line create command
+```
+php artisan make:model Staff -mrc && php artisan make:request StaffRequest && php artisan make:resource StaffResource
+
+```
+
+
 ```
 php artisan make:model Staff -mrc 
 ```

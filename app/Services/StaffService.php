@@ -44,4 +44,9 @@ class StaffService
             'department' => $staffDto->department,
         ]);
     }
+
+    public function deleteStaff(Staff $staff)
+    {
+        $staff->delete();
+    }
 }
