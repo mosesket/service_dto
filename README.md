@@ -11,11 +11,11 @@ php artisan make:model Staff -mrc && php artisan make:request StaffRequest && ph
 
 
 ```
-php artisan make:model Staff -mrc 
+php artisan make:model Staff -mrscf 
 ```
 or 
 ```
-php artisan make:model Staff -mc 
+php artisan make:model Staff -a
 ```
 
 install api and sanctum
