@@ -1,41 +1,43 @@
-go to the folder you want to use it, and run this commands
+Clone the repository
 ```
 git clone git@github.com:mosesket/service_dto.git
 ```
-
-
-one-line create command
+Navigate to the project directory
 ```
-php artisan make:model Staff -mfscrR --policy && php artisan make:resource StaffResource
-
-```
-or 
-```
-php artisan make:model Staff -a && php artisan make:resource StaffResource
+cd service_dto
 ```
 
-
-install api and sanctum
+activate API and install sanctum
 ```
 php artisan install:api
 ```
 
-create service commands
+
+scaffold using one-line command
 ```
-php artisan  make:class Services/StaffService
+php artisan make:model Staff -a && php artisan make:resource StaffResource && php artisan make:class Services/StaffService && php artisan make:class DataTransferObjects/StaffDto 
+
 ```
 
-create request commands
+Alternatively, create model, migration, factory, seeder, resource controller, requests, and policy
 ```
-php artisan make:request UpdateStafRequest
+php artisan make:model Staff -mfscrR --policy
 ```
-
-create resource commands
+create resource 
 ```
 php artisan make:resource StafResource 
 ```
-
-create DTO commands
+create service 
 ```
-php artisan make:class DataTransferObjects/TestDto 
+php artisan make:class Services/StaffService
+```
+create DTO 
+```
+php artisan make:class DataTransferObjects/StaffDto 
+```
+
+```
+create DTO 
+```
+php artisan test
 ```
