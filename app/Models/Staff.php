@@ -9,6 +9,8 @@ class Staff extends Model
 {
     use HasFactory;
 
+    protected $table = 'staffs';
+
     protected $guarded = [];
 
     // Define the relationship with Payroll

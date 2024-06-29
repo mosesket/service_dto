@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2)->nullable();
             $table->timestamps();
 
-            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
+            $table->foreign('staff_id')->references('id')->on('staffs')->onDelete('cascade');
         });
     }
 

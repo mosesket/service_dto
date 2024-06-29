@@ -36,17 +36,21 @@ class StaffService
         return $staff;
     }
 
-    public function updateDepartment(StaffDto $staffDto): Staff
+    public function getStaffById(int $id): ?Staff
     {
-        $staff = Staff::find($staffDto->id);
+        return Staff::find($id);
+    }
 
+    public function updateDepartment(Staff $staff, StaffDto $staffDto): Staff
+    {
         return tap($staff)->update([
+            'name' => $staffDto->name,
             'department' => $staffDto->department,
         ]);
     }
 
-    public function deleteStaff(Staff $staff)
+    public function deleteStaff(Staff $staff): bool
     {
-        $staff->delete();
+        return $staff->delete();
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 
-class CreateStaffRequest extends FormRequest
+class StoreStaffRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -44,9 +44,7 @@ class CreateStaffRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'department' => 'required',
-            'public_2k' => 'integer|required',
-            'private_2billion' => 'integer|required',
+            'department' => 'nullable',
         ];
     }
 
