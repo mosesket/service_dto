@@ -1,8 +1,8 @@
-Clone the repository
+clone the repository
 ```
 git clone git@github.com:mosesket/service_dto.git
 ```
-Navigate to the project directory
+navigate to the project directory
 ```
 cd service_dto
 ```
@@ -19,7 +19,7 @@ php artisan make:model Staff -a && php artisan make:resource StaffResource && ph
 
 ```
 
-Alternatively, create model, migration, factory, seeder, resource controller, requests, and policy
+alternatively, create model, migration, factory, seeder, resource controller, requests, and policy
 ```
 php artisan make:model Staff -mfscrR --policy
 ```
@@ -36,8 +36,11 @@ create DTO
 php artisan make:class DataTransferObjects/StaffDto 
 ```
 
+create a Pest test file
 ```
-create DTO 
+php artisan make:test StaffTest --pest
+```
+run test
 ```
 php artisan test
 ```
