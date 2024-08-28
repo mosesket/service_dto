@@ -23,7 +23,7 @@ php artisan make:model Staff -a && php artisan make:resource StaffResource && ph
 
 alternatively, create model, migration, factory, seeder, resource controller, requests, and policy
 ```bash
-php artisan make:model Staff -mfscrR --policy
+php artisan make:model Staff -Rfcmrs --policy
 ```
 
 create resource 
